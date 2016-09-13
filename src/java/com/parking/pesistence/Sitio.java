@@ -5,8 +5,6 @@
  */
 package com.parking.pesistence;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -25,10 +23,10 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author EASYPARKING
+ * @author yeison
  */
 @Entity
-@Table(name = "sitio", catalog = "easyparking2", schema = "")
+@Table(name = "sitio")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Sitio.findAll", query = "SELECT s FROM Sitio s"),
@@ -54,7 +52,6 @@ public class Sitio implements Serializable {
     @Column(name = "longitud")
     private String longitud;
     @OneToMany(mappedBy = "idSitio")
-    @JsonBackReference 
     private List<Parqueadero> parqueaderoList;
 
     public Sitio() {

@@ -5,8 +5,6 @@
  */
 package com.parking.pesistence;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -19,18 +17,21 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author EASYPARKING
+ * @author yeison
  */
 @Entity
-@Table(name = "parqueadero", catalog = "easyparking2", schema = "")
+@Table(name = "parqueadero")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Parqueadero.findAll", query = "SELECT p FROM Parqueadero p"),
-    @NamedQuery(name = "Parqueadero.findByIdParqueadero", query = "SELECT p FROM Parqueadero p WHERE p.idParqueadero = :idParqueadero")})
+    @NamedQuery(name = "Parqueadero.findByIdParqueadero", query = "SELECT p FROM Parqueadero p WHERE p.idParqueadero = :idParqueadero"),
+    @NamedQuery(name = "Parqueadero.findByNombreParqueadero", query = "SELECT p FROM Parqueadero p WHERE p.nombreParqueadero = :nombreParqueadero")})
 public class Parqueadero implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -39,25 +40,25 @@ public class Parqueadero implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_parqueadero")
     private Integer idParqueadero;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 60)
+    @Column(name = "nombre_parqueadero")
+    private String nombreParqueadero;
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
     @ManyToOne
-     
     private Usuario idUsuario;
     @JoinColumn(name = "id_costo", referencedColumnName = "id_costo")
     @ManyToOne
-    
     private Costo idCosto;
     @JoinColumn(name = "id_cupo", referencedColumnName = "id_cupo")
     @ManyToOne
-    
     private Cupo idCupo;
     @JoinColumn(name = "id_horario", referencedColumnName = "id_horario")
     @ManyToOne
-    
     private Horario idHorario;
     @JoinColumn(name = "id_sitio", referencedColumnName = "id_sitio")
     @ManyToOne
-    
     private Sitio idSitio;
 
     public Parqueadero() {
@@ -67,12 +68,25 @@ public class Parqueadero implements Serializable {
         this.idParqueadero = idParqueadero;
     }
 
+    public Parqueadero(Integer idParqueadero, String nombreParqueadero) {
+        this.idParqueadero = idParqueadero;
+        this.nombreParqueadero = nombreParqueadero;
+    }
+
     public Integer getIdParqueadero() {
         return idParqueadero;
     }
 
     public void setIdParqueadero(Integer idParqueadero) {
         this.idParqueadero = idParqueadero;
+    }
+
+    public String getNombreParqueadero() {
+        return nombreParqueadero;
+    }
+
+    public void setNombreParqueadero(String nombreParqueadero) {
+        this.nombreParqueadero = nombreParqueadero;
     }
 
     public Usuario getIdUsuario() {

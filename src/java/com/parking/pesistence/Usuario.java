@@ -5,7 +5,6 @@
  */
 package com.parking.pesistence;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -24,17 +23,17 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author EASYPARKING
+ * @author yeison
  */
 @Entity
-@Table(name = "usuario", catalog = "easyparking2", schema = "")
+@Table(name = "usuario")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
     @NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario"),
     @NamedQuery(name = "Usuario.findByNombreUsuario", query = "SELECT u FROM Usuario u WHERE u.nombreUsuario = :nombreUsuario"),
     @NamedQuery(name = "Usuario.findByUsuario", query = "SELECT u FROM Usuario u WHERE u.usuario = :usuario"),
-    @NamedQuery(name = "Usuario.findByContrase\u00f1a", query = "SELECT u FROM Usuario u WHERE u.contrase\u00f1a = :contrase\u00f1a"),
+    @NamedQuery(name = "Usuario.findByContrasena", query = "SELECT u FROM Usuario u WHERE u.contrasena = :contrasena"),
     @NamedQuery(name = "Usuario.findByCorreo", query = "SELECT u FROM Usuario u WHERE u.correo = :correo"),
     @NamedQuery(name = "Usuario.findByCategoriaUsuario", query = "SELECT u FROM Usuario u WHERE u.categoriaUsuario = :categoriaUsuario")})
 public class Usuario implements Serializable {
@@ -52,8 +51,8 @@ public class Usuario implements Serializable {
     @Column(name = "usuario")
     private String usuario;
     @Size(max = 60)
-    @Column(name = "contrase\u00f1a")
-    private String contraseña;
+    @Column(name = "contrasena")
+    private String contrasena;
     @Size(max = 60)
     @Column(name = "correo")
     private String correo;
@@ -61,9 +60,8 @@ public class Usuario implements Serializable {
     @Column(name = "categoria_usuario")
     private String categoriaUsuario;
     @OneToMany(mappedBy = "idUsuario")
-    @JsonBackReference  
     private List<Parqueadero> parqueaderoList;
-    
+
     public Usuario() {
     }
 
@@ -95,12 +93,12 @@ public class Usuario implements Serializable {
         this.usuario = usuario;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getContrasena() {
+        return contrasena;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
     public String getCorreo() {

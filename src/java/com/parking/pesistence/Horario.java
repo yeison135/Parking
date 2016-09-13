@@ -5,8 +5,6 @@
  */
 package com.parking.pesistence;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -25,10 +23,10 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author EASYPARKING
+ * @author yeison
  */
 @Entity
-@Table(name = "horario", catalog = "easyparking2", schema = "")
+@Table(name = "horario")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Horario.findAll", query = "SELECT h FROM Horario h"),
@@ -54,7 +52,6 @@ public class Horario implements Serializable {
     @Column(name = "domingo_festivo")
     private String domingoFestivo;
     @OneToMany(mappedBy = "idHorario")
-    @JsonBackReference 
     private List<Parqueadero> parqueaderoList;
 
     public Horario() {
