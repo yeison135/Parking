@@ -44,7 +44,7 @@ import javax.ws.rs.core.MediaType;
 
 public class ParkingResource {
 
-     @PersistenceContext(unitName = "parkingbdPU")
+    @PersistenceContext(unitName = "parkingbdPU")
     private EntityManager em;
     @Context
     private UriInfo context;
