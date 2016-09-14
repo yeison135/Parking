@@ -5,6 +5,7 @@
  */
 package com.parking.pesistence;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -44,21 +45,27 @@ public class Parqueadero implements Serializable {
     @NotNull
     @Size(min = 1, max = 60)
     @Column(name = "nombre_parqueadero")
+    @JsonManagedReference
     private String nombreParqueadero;
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
     @ManyToOne
+    @JsonManagedReference
     private Usuario idUsuario;
     @JoinColumn(name = "id_costo", referencedColumnName = "id_costo")
     @ManyToOne
+    @JsonManagedReference
     private Costo idCosto;
     @JoinColumn(name = "id_cupo", referencedColumnName = "id_cupo")
     @ManyToOne
+    @JsonManagedReference
     private Cupo idCupo;
     @JoinColumn(name = "id_horario", referencedColumnName = "id_horario")
     @ManyToOne
+    @JsonManagedReference
     private Horario idHorario;
     @JoinColumn(name = "id_sitio", referencedColumnName = "id_sitio")
     @ManyToOne
+    @JsonManagedReference
     private Sitio idSitio;
 
     public Parqueadero() {
