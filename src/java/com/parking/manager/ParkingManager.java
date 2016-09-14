@@ -34,6 +34,13 @@ public class ParkingManager {
         return true;
     }
     
+    public boolean cambiarContrasena(Usuario usuario, EntityManager em) throws Exception {
+
+         em.merge(usuario);
+   //merge update       
+        return true;
+    }
+    
     
     /*
  * consulta un ususario registrado 

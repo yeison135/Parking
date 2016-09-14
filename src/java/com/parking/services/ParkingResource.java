@@ -82,6 +82,30 @@ public class ParkingResource {
         return 0;
     }
     
+    @POST   
+    @Path("cambiarContrasena")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Integer cambiarContrasena(Usuario usuario) {
+            
+               
+        ParkingManager manager = new ParkingManager(); 
+        try{
+            boolean resultado = manager.cambiarContrasena(usuario,em);  
+            if(resultado){        
+                return 1;
+            }
+        }catch(Exception ex){
+            ex.printStackTrace();
+            return 0;
+        }
+        
+        return 0;
+    }
+    
+    
+    
+    
     @POST
     @Path("consultausuarios")
     @Produces(MediaType.APPLICATION_JSON)
