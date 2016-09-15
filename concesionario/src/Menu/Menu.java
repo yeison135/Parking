@@ -30,7 +30,7 @@ public class Menu {
         carpuerta1.pocision = "derecha";
 
         Puerta carpuerta2 = new Puerta();//puerta 2
-        carpuerta2.color = "verde";
+        carpuerta2.color = "Amarillopollito";
         carpuerta2.material = "acero";
         carpuerta2.pocision = "izquierda";
 
