@@ -92,6 +92,7 @@ public class ParkingResource {
         ParkingManager manager = new ParkingManager(); 
         try{
             boolean resultado = manager.cambiarContrasena(usuario,em);  
+            
             if(resultado){        
                 return 1;
             }
