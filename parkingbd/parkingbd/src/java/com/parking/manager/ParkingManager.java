@@ -36,16 +36,7 @@ public class ParkingManager {
     
     public boolean cambiarContrasena(Usuario usuario, EntityManager em) throws Exception {
 
-            StringBuilder queryString = new StringBuilder();
-        queryString.append("SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario");
-        
-        
-         Query usuarioU = em.createQuery(queryString.toString());
-         usuarioU.setParameter("idUsuario", usuario.getIdUsuario());
-         Usuario usuarios =  (Usuario) usuarioU.getSingleResult();
-        
-         usuarios.setContrasena(usuario.getContrasena());
-         em.merge(usuarios);
+         em.merge(usuario);
    //merge update       
         return true;
     }

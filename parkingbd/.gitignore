@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
@@ -57,3 +58,8 @@ Temporary Items
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+=======
+Presentación.pptx
+>>>>>>> origin/master
+/parkingbd/build/
+/parkingbd/nbproject/private/
