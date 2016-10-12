@@ -134,24 +134,6 @@ public class ParkingResource {
                
               return user;
     }
-    
-//    @POST
-//    @Path("consultausuarios")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    public List<Usuario> getJson(int idusuario) {
-//       
-//       ParkingManager consulta = new ParkingManager();     
-//       List<Usuario> user = consulta.consultarusuarios(em,idusuario);       
-//        
-//        return user;
-//    }
-    
-
-    /**
-     *
-     * @return
-     */
     @GET
     @Path("consultarParqueaderos")
     @Produces(MediaType.APPLICATION_JSON)
