@@ -81,12 +81,16 @@ public class ParkingResource {
         
         return 0;
     }
-    
+    /**
+     * Metodo para cambiar la contraseña del usuario 
+     * @param usuario
+     * @return 
+     */
     @POST   
     @Path("cambiarContrasena")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Integer cambiarContrasena(Usuario usuario) {
+    public boolean cambiarContrasena(Usuario usuario) {
             
                
         ParkingManager manager = new ParkingManager(); 
@@ -94,14 +98,14 @@ public class ParkingResource {
             boolean resultado = manager.cambiarContrasena(usuario,em);  
             
             if(resultado){        
-                return 1;
+               return true;
             }
         }catch(Exception ex){
             ex.printStackTrace();
-            return 0;
+            return false;
         }
         
-        return 0;
+        return true;
     }
     
     
@@ -125,13 +129,11 @@ public class ParkingResource {
     @Path("usuarioRegistrado")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public List<Usuario> getUsuarios(Filtro Filtro) {
+    public boolean getUsuarios(Filtro Filtro) {
        
                ParkingManager consulta = new ParkingManager();     
-               List<Usuario> user = consulta.usuarioRegistrado(em,Filtro);     
+               boolean user = consulta.usuarioRegistrado(em,Filtro);     
               
-              
-               
               return user;
     }
     @GET

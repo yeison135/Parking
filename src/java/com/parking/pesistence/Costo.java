@@ -5,7 +5,6 @@
  */
 package com.parking.pesistence;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.List;
@@ -59,7 +58,6 @@ public class Costo implements Serializable {
     @Column(name = "tplena_moto_costo")
     private BigInteger tplenaMotoCosto;
     @OneToMany(mappedBy = "idCosto")
-    @JsonBackReference 
     private List<Parqueadero> parqueaderoList;
 
     public Costo() {

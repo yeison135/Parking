@@ -33,7 +33,21 @@ public class ParkingManager {
    //merge update       
         return true;
     }
-    
+    /**
+     * Lo consulta con el Id de usuario y cambia la contraseña
+     * el Json seria de esta manera
+     * {
+     * "usuario":"",
+     * "contrasena":""
+     * }
+     * para el android debe armar el Json con estos dos atributos
+     * si el usuario existe cambia la contraseña si no retorna una 
+     * false 
+     * @param usuario
+     * @param em
+     * @return
+     * @throws Exception 
+     */
     public boolean cambiarContrasena(Usuario usuario, EntityManager em) throws Exception {
 
             StringBuilder queryString = new StringBuilder();
@@ -43,9 +57,13 @@ public class ParkingManager {
          Query usuarioU = em.createQuery(queryString.toString());
          usuarioU.setParameter("idUsuario", usuario.getIdUsuario());
          Usuario usuarios =  (Usuario) usuarioU.getSingleResult();
-        
+        if (usuarios != null) {
          usuarios.setContrasena(usuario.getContrasena());
          em.merge(usuarios);
+        }else {
+        return false;
+        }
+         
    //merge update       
         return true;
     }
@@ -80,25 +98,25 @@ public class ParkingManager {
  * @param foltro idUsuario
  * me trae un ususrio 
  */
-    public List<Usuario> usuarioRegistrado(EntityManager em, Filtro Filtro){    
+    public boolean usuarioRegistrado(EntityManager em, Filtro Filtro){    
         StringBuilder queryString = new StringBuilder();
         queryString.append("SELECT u FROM Usuario u WHERE u.usuario = :usuario"
-                + " AND u.contraseña = :contraseña");
+                + " AND u.contrasena = :contrasena");
         
         
          Query query = em.createQuery(queryString.toString());
         if (Filtro.getFiltroTres()!= null && Filtro.getFiltroUno()!= null) {
              query.setParameter("usuario", Filtro.getFiltroTres());
-             query.setParameter("contraseña", Filtro.getFiltroUno());
+             query.setParameter("contrasena", Filtro.getFiltroUno());
         }     
         
             List<Usuario> usuarios =  query.getResultList();
         if (usuarios != null && !usuarios.isEmpty()) {
-            return usuarios;
+            return true;
         }
         
             
-       return null;
+       return false;
     }
     
      

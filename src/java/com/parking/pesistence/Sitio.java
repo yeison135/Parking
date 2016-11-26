@@ -5,7 +5,6 @@
  */
 package com.parking.pesistence;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -53,7 +52,6 @@ public class Sitio implements Serializable {
     @Column(name = "longitud")
     private String longitud;
     @OneToMany(mappedBy = "idSitio")
-    @JsonBackReference
     private List<Parqueadero> parqueaderoList;
 
     public Sitio() {
