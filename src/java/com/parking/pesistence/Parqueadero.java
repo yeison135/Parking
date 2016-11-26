@@ -6,7 +6,9 @@
 package com.parking.pesistence;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,10 +18,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -60,6 +64,8 @@ public class Parqueadero implements Serializable {
     @JoinColumn(name = "id_sitio", referencedColumnName = "id_sitio")
     @ManyToOne
     private Sitio idSitio;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idParqueadero")
+    private List<Vehiculo> vehiculoList;
 
     public Parqueadero() {
     }
@@ -127,6 +133,15 @@ public class Parqueadero implements Serializable {
 
     public void setIdSitio(Sitio idSitio) {
         this.idSitio = idSitio;
+    }
+
+    @XmlTransient
+    public List<Vehiculo> getVehiculoList() {
+        return vehiculoList;
+    }
+
+    public void setVehiculoList(List<Vehiculo> vehiculoList) {
+        this.vehiculoList = vehiculoList;
     }
 
     @Override

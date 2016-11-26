@@ -13,6 +13,7 @@ import com.parking.pesistence.Horario;
 import com.parking.pesistence.Parqueadero;
 import com.parking.pesistence.Sitio;
 import com.parking.pesistence.Usuario;
+import com.parking.pesistence.Vehiculo;
 import com.sun.javafx.collections.MappingChange;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -107,7 +108,27 @@ public class ParkingResource {
         
         return true;
     }
-    
+    @POST   
+    @Path("registrarVehiculo")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public boolean registrarVehiculo(Vehiculo vehiculo) {
+            
+               
+        ParkingManager manager = new ParkingManager(); 
+        try{
+            boolean resultado = manager.registrarVehiculo(vehiculo,em);  
+            
+            if(resultado){        
+               return true;
+            }
+        }catch(Exception ex){
+            ex.printStackTrace();
+            return false;
+        }
+        
+        return true;
+    }
     
     
     

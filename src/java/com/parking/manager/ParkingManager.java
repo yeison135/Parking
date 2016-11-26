@@ -12,7 +12,9 @@ import com.parking.pesistence.Horario;
 import com.parking.pesistence.Parqueadero;
 import com.parking.pesistence.Sitio;
 import com.parking.pesistence.Usuario;
+import com.parking.pesistence.Vehiculo;
 import com.sun.xml.rpc.processor.modeler.j2ee.xml.string;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -67,7 +69,14 @@ public class ParkingManager {
    //merge update       
         return true;
     }
+    public boolean registrarVehiculo (Vehiculo vihiculo,EntityManager em)
+            throws Exception{
+        Date Fecha = new Date();
+        vihiculo.setFechaRegistro(Fecha);
+    em.persist(vihiculo);
     
+    return true;
+    }
     
     /*
  * consulta un ususario registrado 
